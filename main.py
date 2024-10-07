@@ -1,5 +1,5 @@
 import cv2
-import numpy as np1
+import numpy as np
 import easyocr
 import mss
 import time
