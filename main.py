@@ -4,6 +4,10 @@ import easyocr
 import mss
 import time
 import string
+import logging
+
+# Чтобы не выводилась постоянно сообщение о CUDA от Easyocr
+logging.getLogger('easyocr').setLevel(logging.ERROR)
 
 # Определяем размеры и положение области экрана для скриншота
 monitor = {
@@ -19,6 +23,7 @@ i = 0
 
 # Функция для поиска текста на фото с помощью OCR
 def text_recognition(file_path):
+
     reader = easyocr.Reader(['en'])
     result = reader.readtext(file_path, detail=0)
 
