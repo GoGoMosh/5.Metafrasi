@@ -1,3 +1,4 @@
+from ctypes import windll, Structure, c_long, byref
 import cv2
 import numpy as np
 import easyocr
@@ -60,8 +61,9 @@ try:
             try:
                 print(text_recognition(img_resized)[0].translate(str.maketrans('', '', string.punctuation)))
             except:
+                print('Empty')
                 continue
-            time.sleep(3)
+            time.sleep(4)
 
         # Читаем клавиатуру с небольшой задержкой для правильной обработки клавиш
         key = cv2.waitKey(100) & 0xFF
