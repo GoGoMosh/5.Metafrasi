@@ -56,7 +56,7 @@ try:
         # Захват экрана каждые 3 секунды, если захват запущен
         if is_running:
             capture_and_process_screen()
-            img_for_read = cv2.imread(f'screenshot_{++i}.png')
+            img_for_read = cv2.imread(f'screenshot_{i}.png')
             img_resized = cv2.resize(img_for_read, (343, 40))
             try:
                 print(text_recognition(img_resized)[0].translate(str.maketrans('', '', string.punctuation)))
