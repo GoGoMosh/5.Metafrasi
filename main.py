@@ -1,5 +1,5 @@
 import cv2
-import numpy as np
+import numpy as np1
 import easyocr
 import mss
 import time
@@ -77,3 +77,4 @@ try:
 
 finally:
     cv2.destroyAllWindows()
+
