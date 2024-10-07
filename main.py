@@ -22,9 +22,9 @@ monitor = {
 is_running = True
 i = 0
 
+
 # Функция для поиска текста на фото с помощью OCR
 def text_recognition(file_path):
-
     reader = easyocr.Reader(['en'])
     result = reader.readtext(file_path, detail=0)
 
@@ -60,7 +60,7 @@ try:
             img_resized = cv2.resize(img_for_read, (343, 40))
             try:
                 print(text_recognition(img_resized)[0].translate(str.maketrans('', '', string.punctuation)))
-            except:
+            except IndexError:
                 print('Empty')
                 continue
             time.sleep(4)
@@ -77,11 +77,10 @@ try:
                 is_running = True
                 print("Захват экрана паузы снят")
 
-        # Выход из программы при нажатии ESC
+# Выход из программы при нажатии ESC
         if key == 27:  # 27 - это код клавиши ESC
             print("Завершение программы")
             break
 
 finally:
     cv2.destroyAllWindows()
-
