@@ -1,6 +1,6 @@
 #from ctypes import windll, Structure, c_long, byref
 import cv2
-
+import function
 import time
 import string
 import logging
