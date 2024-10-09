@@ -1,4 +1,4 @@
-from ctypes import windll, Structure, c_long, byref
+#from ctypes import windll, Structure, c_long, byref
 import cv2
 import numpy as np
 import easyocr
@@ -6,6 +6,7 @@ import mss
 import time
 import string
 import logging
+import pathlib
 
 # Чтобы не выводилась постоянно сообщение о CUDA от Easyocr
 logging.getLogger('easyocr').setLevel(logging.ERROR)
@@ -85,5 +86,13 @@ try:
             print("Завершение программы")
             break
 
+# Закрытие программы
 finally:
+
+    # Удаление окон openCV
     cv2.destroyAllWindows()
+
+    # Удаление изобр.
+    for i in range(3):
+        file = pathlib.Path(f"screenshot_{i}.png")
+        file.unlink()
