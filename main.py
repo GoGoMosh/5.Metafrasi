@@ -3,12 +3,11 @@ import cv2
 import numpy as np
 import easyocr
 import mss
+
 import time
 import string
 import logging
 import pathlib
-
-from sympy.codegen.ast import continue_
 
 # Чтобы не выводилась постоянно сообщение о CUDA от Easyocr
 logging.getLogger('easyocr').setLevel(logging.ERROR)
@@ -99,6 +98,7 @@ finally:
         try:
             file = pathlib.Path(f"screenshot_{i}.png")
             file.unlink()
+
         # Если не будет нужного изображения
         except FileNotFoundError:
             continue
