@@ -24,7 +24,7 @@ i = 0
 
 # Функция для поиска текста на фото с помощью OCR
 def text_recognition(file_path):
-    reader = easyocr.Reader(['en'])
+    reader = easyocr.Reader(['ru'])
     result = reader.readtext(file_path, detail=0)
 
     return result
