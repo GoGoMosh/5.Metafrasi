@@ -20,6 +20,7 @@ monitor = {
 
 # Флаг для запуска/паузы захвата экрана
 is_running = True
+i = 0
 
 # Функция для поиска текста на фото с помощью OCR
 def text_recognition(file_path):
@@ -51,7 +52,7 @@ def capture_and_process_screen():
 # Основной цикл программы
 try:
     while True:
-        i = 0
+
         if i != 3:
             i += 1
         else:
