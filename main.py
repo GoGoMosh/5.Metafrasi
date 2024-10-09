@@ -65,7 +65,7 @@ try:
                 print(text_recognition(img_resized)[0].translate(str.maketrans('', '', string.punctuation)))
             except IndexError:
                 print('Empty')
-                continue
+                pass
             time.sleep(4)
 
         # Читаем клавиатуру с небольшой задержкой (100) для правильной обработки клавиш
