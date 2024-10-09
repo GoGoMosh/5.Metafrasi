@@ -4,6 +4,7 @@ import numpy as np
 import easyocr
 import mss
 
+import msvcrt, sys
 import time
 import string
 import logging
@@ -74,18 +75,22 @@ try:
         key = cv2.waitKey(100) & 0xFF
 
         # Если нажата клавиша 'p', ставим захват на паузу, иначе снимаем паузу
-        if key in [80, 112, 1079, 1047]:
-            if is_running:
-                is_running = False
-                print("Захват экрана поставлен на паузу")
-            else:
-                is_running = True
-                print("Захват экрана паузы снят")
+
 
 # Выход из программы при нажатии ESC
-        if key == 27:  # 27 - это код клавиши ESC
-            print("Завершение программы")
-            break
+        if msvcrt.kbhit():
+            k = ord(msvcrt.getch())
+
+            if k in [80, 112, 1079, 1047]:
+                if is_running:
+                    is_running = False
+                    print("Захват экрана поставлен на паузу")
+                else:
+                    is_running = True
+                    print("Захват экрана паузы снят")
+            if k == 27:  # 27 - это код клавиши ESC
+                print("Завершение программы")
+                break
 
 # Закрытие программы
 finally:
