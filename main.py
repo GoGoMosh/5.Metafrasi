@@ -74,7 +74,7 @@ try:
         key = cv2.waitKey(50) & 0xFF
 
         # Если нажата клавиша 'p', ставим захват на паузу, иначе снимаем паузу
-        if key == 80:
+        if key == ord('p'):
             if is_running:
                 is_running = False
                 print("Захват экрана поставлен на паузу")
