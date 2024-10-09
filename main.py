@@ -20,8 +20,6 @@ monitor = {
 
 # Флаг для запуска/паузы захвата экрана
 is_running = True
-i = 0
-
 
 # Функция для поиска текста на фото с помощью OCR
 def text_recognition(file_path):
@@ -47,12 +45,17 @@ def capture_and_process_screen():
         cv2.imshow('Screen Capture', img)
 
         # Сохраняем изображение (по желанию)
-        cv2.imwrite(f'screenshot_{++i}.png', img)
+        cv2.imwrite(f'screenshot_{i}.png', img)
 
 
 # Основной цикл программы
 try:
     while True:
+        i = 0
+        if i == 3:
+            i = 0
+        else:
+            i += 1
         # Захват экрана каждые 3 секунды, если захват запущен
         if is_running:
             capture_and_process_screen()
