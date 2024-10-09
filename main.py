@@ -8,6 +8,8 @@ import string
 import logging
 import pathlib
 
+from sympy.codegen.ast import continue_
+
 # Чтобы не выводилась постоянно сообщение о CUDA от Easyocr
 logging.getLogger('easyocr').setLevel(logging.ERROR)
 
@@ -92,7 +94,11 @@ finally:
     # Удаление окон openCV
     cv2.destroyAllWindows()
 
-    # Удаление изобр.
+    # Удаление изображения
     for i in range(3):
-        file = pathlib.Path(f"screenshot_{i}.png")
-        file.unlink()
+        try:
+            file = pathlib.Path(f"screenshot_{i}.png")
+            file.unlink()
+        # Если не будет нужного изображения
+        except FileNotFoundError:
+            continue
