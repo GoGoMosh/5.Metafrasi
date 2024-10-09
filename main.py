@@ -52,10 +52,10 @@ def capture_and_process_screen():
 try:
     while True:
         i = 0
-        if i == 3:
-            i = 0
-        else:
+        if i != 3:
             i += 1
+        else:
+            i = 0
         # Захват экрана каждые 3 секунды, если захват запущен
         if is_running:
             capture_and_process_screen()
