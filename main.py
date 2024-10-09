@@ -53,10 +53,12 @@ def capture_and_process_screen():
 try:
     while True:
 
-        if i != 3:
+        # Изменение название сохраняемого изображения с текстом от 0 до 2
+        if i != 2:
             i += 1
         else:
             i = 0
+
         # Захват экрана каждые 3 секунды, если захват запущен
         if is_running:
             capture_and_process_screen()
