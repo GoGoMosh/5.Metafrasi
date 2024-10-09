@@ -4,7 +4,7 @@ import numpy as np
 import easyocr
 import mss
 
-import msvcrt, sys
+import msvcrt
 import time
 import string
 import logging
@@ -69,19 +69,14 @@ try:
             except IndexError:
                 print('Empty')
                 pass
-            time.sleep(4)
-
-        # Читаем клавиатуру с небольшой задержкой (100) для правильной обработки клавиш
-        key = cv2.waitKey(100) & 0xFF
-
-        # Если нажата клавиша 'p', ставим захват на паузу, иначе снимаем паузу
 
 
-# Выход из программы при нажатии ESC
+        # Выход из программы при нажатии ESC или пауза программы
+        # если нажата клавища
         if msvcrt.kbhit():
-            k = ord(msvcrt.getch())
+            k = ord(msvcrt.getche())
 
-            if k in [80, 112, 1079, 1047]:
+            if k in [80, 112, 1079, 1047]: # 80, 112, 1079, 1047 - код клавиш 'p', 'P', 'щ', 'Щ'
                 if is_running:
                     is_running = False
                     print("Захват экрана поставлен на паузу")
@@ -91,6 +86,7 @@ try:
             if k == 27:  # 27 - это код клавиши ESC
                 print("Завершение программы")
                 break
+        time.sleep(4)
 
 # Закрытие программы
 finally:
