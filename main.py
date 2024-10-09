@@ -50,7 +50,6 @@ def capture_and_process_screen():
         # Сохраняем изображение (по желанию)
         cv2.imwrite(f'screenshot_{i}.png', img)
 
-
 # Основной цикл программы
 try:
     while True:
@@ -82,7 +81,7 @@ try:
                 is_running = True
                 print("Захват экрана паузы снят")
 
-# Выход из программы при нажатии ESC
+        # Выход из программы при нажатии ESC
         if key == 27:  # 27 - это код клавиши ESC
             print("Завершение программы")
             break
