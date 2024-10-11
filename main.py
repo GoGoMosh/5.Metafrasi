@@ -8,7 +8,7 @@ import logging
 # Чтобы не выводилась постоянно сообщение о CUDA от Easyocr
 logging.getLogger('easyocr').setLevel(logging.ERROR)
 
-
+# Определяем размеры и положение области экрана для скриншота
 monitor = {
     "top": 100,  # Верхняя граница (координата Y)
     "left": 100,  # Левая граница (координата X)
