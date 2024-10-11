@@ -44,15 +44,12 @@ try:
 
         # Если нажата клавиша 'p', ставим захват на паузу, иначе снимаем паузу
         if key in [80, 112]:
-            if is_running:
-                is_running = False
-                print("Захват экрана поставлен на паузу")
-            else:
-                is_running = True
-                print("Захват экрана паузы снят")
+            is_running = not is_running
+            print("Захват экрана поставлен на паузу" \
+            if not is_running else "Захват экрана паузы снят")
 
         # Выход из программы при нажатии ESC
-        if key == 27:  # 27 - это код клавиши ESC
+        elif key == 27:  # 27 - это код клавиши ESC
             print("Завершение программы")
             break
 
