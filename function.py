@@ -4,7 +4,7 @@ import mss
 import pathlib
 import cv2
 
-# Функция для поиска текста на фото с помощью OCR
+# Функция для поиска текста на фото с помощью OCR (оптическое распознавание текста)
 def text_recognition(file_path):
     reader = easyocr.Reader(['ru'])
     result = reader.readtext(file_path, detail=0)
