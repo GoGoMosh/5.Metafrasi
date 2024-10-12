@@ -1,3 +1,6 @@
+'''
+Ядро программы Metafrasi
+'''
 
 from function import *
 import time
