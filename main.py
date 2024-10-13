@@ -1,4 +1,4 @@
-
+'''как'''
 from function import *
 import time
 import string
