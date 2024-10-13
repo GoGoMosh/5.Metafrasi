@@ -1,3 +1,7 @@
+'''
+Модуль функций программы Metafrasi
+'''
+
 import numpy as np
 import easyocr
 import mss
