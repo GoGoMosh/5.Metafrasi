@@ -33,7 +33,7 @@ def capture_and_process_screen(monitor, i):
         # Сохраняем изображение
         cv2.imwrite(f'screenshot_{i}.png', img)
 
-
+# Функция для удаления фоток
 def deleting_img():
 
     for j in range(3):
