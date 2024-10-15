@@ -15,7 +15,7 @@ def text_recognition(file_path):
 
     return result
 
-
+# Функция для захвата экрана и обработки через OpenCV
 def capture_and_process_screen(monitor, i):
     with mss.mss() as sct:
         # Захват области экрана
