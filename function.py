@@ -35,6 +35,7 @@ def capture_and_process_screen(monitor, i):
 
 # Функция для удаления фоток
 def deleting_img():
+
     for j in range(3):
         try:
             file = pathlib.Path(f"screenshot_{j}.png")
