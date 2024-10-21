@@ -9,7 +9,7 @@ import logging
 
 def main():
 
-    # Чтобы не выводилась постоянно сообщение о CUDA от Easyocкrrrrrrr
+    # Чтобы не выводилась постоянно сообщение о CUDA от Easyocкrrrrrrrr
     logging.getLogger('easyocr').setLevel(logging.ERROR)
 
     # Определяем размеры и положение области экрана для скриншота
