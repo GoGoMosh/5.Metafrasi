@@ -6,9 +6,36 @@ from function import *
 import time
 import string
 import logging
-import threading
+
+# Флаг для запуска/паузы захвата экрана
+global is_running, stop_program
+is_running = True
+is_exit = True
+
+# функция для обработки нажатий клавиш
+def check_keys():
+
+    global is_running, is_exit
+
+    # Читаем клавиатуру с небольшой задержкой (100 мс) для правильной обработки клавиш
+    key = cv2.waitKey(100) & 0xFF
+
+    # Если нажата клавиша 'p', ставим захват на паузу, иначе снимаем паузу
+    if key in [80, 112]:
+        is_running = not is_running
+        print("Захват экрана поставлен на паузу" \
+                    if not is_running else "Захват экрана паузы снят")
+        return is_running
+
+    # Выход из программы при нажатии ESC
+    elif key == 27:  # 27 - это код клавиши ESC
+        print("Завершение программы")
+        is_exit = not is_exit
+        return is_exit
 
 def main():
+
+    global is_running, is_exit
 
     # Чтобы не выводилась постоянно сообщение о CUDA от Easyocr
     logging.getLogger('easyocr').setLevel(logging.ERROR)
@@ -21,45 +48,18 @@ def main():
         "height": 120  # Высота области
     }
 
-    # Флаг для запуска/паузы захвата экрана
-    global is_running, stop_program
-    is_running = True
-    stop_program = False
+
     i = 0
-
-    # функция для обработки нажатий клавиш
-    def check_keys():
-        global is_running, stop_program
-
-        while not stop_program:
-
-            # Читаем клавиатуру с небольшой задержкой (100 мс) для правильной обработки клавиш
-            key = cv2.waitKey(100) & 0xFF
-
-            # Если нажата клавиша 'p', ставим захват на паузу, иначе снимаем паузу
-            if key in [80, 112]:
-                is_running = not is_running
-                print("Захват экрана поставлен на паузу" \
-                          if not is_running else "Захват экрана паузы снят")
-
-            # Выход из программы при нажатии ESC
-            elif key == 27:  # 27 - это код клавиши ESC
-                print("Завершение программы")
-                stop_program = True
-                break
-
-    # Запускаем поток для обработки нажатий клавиш
-    key_thread = threading.Thread(target=check_keys)
-    key_thread.start()
 
     # Основной цикл программы
     try:
-        while not stop_program:
-
+        while True:
             # Изменение имени файла сохраняемого изображения с текстом от 0 до 2
             i = (i + 1) % 3
-
+            check_keys()
             # Захват экрана каждые 3 секунды, если захват запущен
+            if not is_exit:
+                break
             if is_running:
                 capture_and_process_screen(monitor, i)
                 img_for_read = cv2.imread(f'screenshot_{i}.png')
@@ -82,8 +82,6 @@ def main():
         # Удаление изображения
         deleting_img()
 
-        # ЗавершениЕ потока
-        key_thread.join()
 
 if __name__ == "__main__":
     main()
