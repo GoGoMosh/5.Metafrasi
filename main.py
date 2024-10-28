@@ -6,6 +6,7 @@ from function import *
 import time
 import string
 import logging
+from threading import Thread
 
 # Флаг для запуска/паузы захвата экрана
 global is_running, stop_program
@@ -32,6 +33,8 @@ def check_keys():
         print("Завершение программы")
         is_exit = not is_exit
         return is_exit
+    elif key == 75:
+        print("Test parallel")
 
 def main():
 
@@ -83,5 +86,13 @@ def main():
         deleting_img()
 
 
+
 if __name__ == "__main__":
-    main()
+    t1 = Thread(target=check_keys)
+    t2 = Thread(target=main, daemon=True)
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()
