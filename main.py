@@ -8,7 +8,7 @@ import string
 import logging
 from threading import Thread
 
-# Флаг для запуска/паузы захвата экрана
+# Флаг для запуска/паузы захвата экранаффф
 global is_running, stop_program
 is_running = True
 is_exit = True
